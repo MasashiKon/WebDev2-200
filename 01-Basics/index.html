@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <title>Selectors</title>
+    <style>
+        .outer{
+            display: table-cell;
+            border-style: solid;
+            padding: 20px;
+            background-color: skyblue;
+        }
+        .outer p {
+            display: table-cell;
+            border-style: solid;
+            padding: 20px;
+            background-color: orange;
+        }
+
+        .outer span {
+            display: table-cell;
+            border-style: solid;
+            padding: 20px;
+            background-color: magenta;
+        }
+    </style>
+</head>
+<body>
+
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p id="something"></p>
+    <p></p>
+    <p class="boldText"></p>
+    <p></p>
+    <p class="thisisaparagraph"></p>
+    <p></p>
+    <p></p>
+    <div id="section">
+        This is a div
+        <p></p>
+    </div>
+    <button>Click me</button>
+
+    <div class="outer">
+        Div Text
+        <p class="innerParagraph">
+            Paragraph Text
+            <span>Span Text</span>
+        </p>
+    </div>
+    <script>
+        $(document).ready(function(){
+            //Selecting
+
+            // #someId - select by id
+            // .someClassName - select by class name
+            // [id] - Select by attribute
+            // [class='boldText'] - Select by attribute value
+
+            $("[class='boldText']").append('This is a paragraph~')
+
+
+            const newDiv = $("<div>") //creates a new empty div element
+            const newListItem = $('<li>a list item</li>') //create a list element with content
+
+            $("#section").html(newListItem)
+
+
+            //Events
+            // $(selector).eventName(function(){}) //syntax
+            // $(selector).on('eventName', function(){}) //syntax
+
+            $("button").on('dblclick',function(event){
+                // alert("Button clicked")
+                console.log($(this));
+                $(this).text("<i>Clicked</i>") // innerText
+                $(this).html("<i>Clicked</i>") // innerHTML
+
+                //Event object
+                console.log("Event type: ", event.type);
+                console.log("Button or key pressed: ", event.which);
+                console.log("Target Element: ", event.target);
+                console.log("Mouse X coordinate: ", event.pageX);
+                console.log("Mouse Y coordinate: ", event.pageY);
+            })
+
+            // $(".boldText").hover(function(event){
+            //     console.log("hovering...");
+            // }, function(){
+            //     console.log("left the element...");
+            // })
+
+
+            //multiple event handlers
+            // $(selector).on({
+            //     event_1: function(){}
+            //     event_2: function(){}
+            //     event_3: function(){}
+            // })
+
+            $('div').on({
+                click: function(){
+                    alert("Click event triggered")
+                },
+                mouseenter: function(){
+                    console.log("Entered element")
+                },
+                mouseleave: function(){
+                    console.log("Left element")
+                }
+            })
+
+            //Event bubbling
+            $('.outer').click(function(){
+                alert("Div is clicked")
+            })
+            $('.outer p').click(function(){
+                alert("Div is clicked")
+            })
+            $('.outer span').click(function(){
+                alert("Div is clicked")
+            })
+        })
+    </script>
+</body>
+</html>

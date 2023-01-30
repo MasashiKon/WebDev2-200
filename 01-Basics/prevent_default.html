@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <title>Selectors</title>
+    <style>
+        .outer{
+            display: table-cell;
+            border-style: solid;
+            padding: 20px;
+            background-color: skyblue;
+        }
+        .outer p {
+            display: table-cell;
+            border-style: solid;
+            padding: 20px;
+            background-color: orange;
+        }
+
+        .outer span {
+            display: table-cell;
+            border-style: solid;
+            padding: 20px;
+            background-color: magenta;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        I accept to sell my soul
+        <input type="checkbox" id="mysoul" />
+        <div>
+            <a href="http://www.google.com" target="_blank">Link to google</a>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+
+            $("a").click(function(event){
+                const checked = $('#mysoul').is(":checked");
+
+                if(!checked){
+                    event.preventDefault()
+                    alert("Please  check the terms and conditions to access the website")
+                }
+            })
+        })
+    </script>
+</body>
+</html>
