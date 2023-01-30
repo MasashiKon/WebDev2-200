@@ -7,6 +7,26 @@
  *  - Clear the text inside the text box after the add button is clicked.
  */
 
+const counter = 0;
+
 $(document).ready(function () {
     // code goes here
+    $("#addTask").click(function() {
+        if($(".textBox").val() === "") {
+            alert("Error: Please enter a task first");
+            return;
+        } else {
+            alert(`New Task: ${$(".textBox").val()}`);
+            const taskString = $(".textBox").val();
+            $(".textBox").val("");
+
+            const newTask = $(`<li><span>${taskString}</span> <button class="doneButton"">Done</button></li>`);
+            $('#toDoList').append(newTask);
+            newTask.click(function() {
+                $("#doneList").append($(this).clone().children()[0]);
+                $("#doneList").append("<br>");
+                $(this).remove();
+            })
+        }
+    });
 });
